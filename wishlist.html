@@ -10,8 +10,9 @@
       margin: 0;
       padding: 0;
     }
- /* Header Container */
- header {
+
+    /* Header Container */
+    header {
       background-color: rgb(15, 0, 70);
       color: white;
       text-align: center;
@@ -22,7 +23,6 @@
     .website-name {
       font-size: 30px;
       font-weight: bold;
-      margin-bottom: 15px;
       margin-bottom: 5px;
     }
 
@@ -46,214 +46,115 @@
       border-radius: 5px;
     }
 
-    /* Mobile responsive styles */
+    /* Wishlist Heading */
+    h1 {
+      text-align: center;
+      font-family: 'Georgia', serif;
+      color: darkmagenta;
+    }
+
+    /* Wishlist Container */
+    .wishlist-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      margin: 0 auto;
+      max-width: 1200px;
+    }
+
+    /* Wishlist Item Styles */
+    .wishlist-item {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      text-align: center;
+      padding: 15px;
+      transition: transform 0.3s;
+    }
+
+    .wishlist-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .wishlist-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .wishlist-item h3 {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .wishlist-item p {
+      font-size: 16px;
+      color: #d32f2f;
+      margin: 10px 0;
+    }
+
+    .remove-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .remove-btn:hover {
+      background-color: #b71c1c;
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      nav {
-        gap: 20px;
+      .wishlist-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       }
 
-      nav a {
+      .wishlist-item h3 {
         font-size: 16px;
-        padding: 8px 15px;
+      }
+
+      .wishlist-item p {
+        font-size: 14px;
+      }
+
+      .remove-btn {
+        padding: 8px;
+        font-size: 14px;
       }
     }
 
     @media (max-width: 480px) {
-      header {
-        padding: 20px 0;
+      .wishlist-container {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 10px;
       }
 
-      .website-name {
-        font-size: 24px;
-      }
-
-      nav a {
+      .wishlist-item h3 {
         font-size: 14px;
-        padding: 6px 10px;
+      }
+
+      .wishlist-item p {
+        font-size: 12px;
+      }
+
+      .remove-btn {
+        padding: 6px;
+        font-size: 12px;
       }
     }
-    /* Grid layout for saree cards */
-.saree-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 25px;
-  padding: 10px;
-  justify-content: center;
-  justify-items: center;
-}
-
-/* Individual saree card styles */
-.saree-card {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  transition: transform 0.3s;
-  justify-content: center;
-  justify-items: center;
-}
-
-.saree-card:hover {
-  transform: translateY(-10px);
-}
-
-.saree-card img {
-  width: 100%;
-  height: auto;
-}
-
-.saree-card h3 {
-  font-size: 18px;
-  margin: 10px 0;
-}
-
-.price {
-  font-size: 16px;
-  color: #d32f2f;
-  font-weight: bold;
-}
-
-.original-price {
-  font-size: 14px;
-  color: #999;
-  text-decoration: line-through;
-  margin-left: 5px;
-}
-
-.buy-btn {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
-  font-size: 14px;
-  transition: background-color 0.3s;
-  margin-bottom: 10px;
-}
-
-.buy-btn:hover {
-  background-color: #0056b3;
-}
-
-/* Wishlist icon styles */
-.wishlist-icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: #fff;
-  color: #d32f2f;
-  font-size: 18px;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.wishlist-icon:hover {
-  background-color: #d32f2f;
-  color: #fff;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .saree-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 15px;
-  }
-
-  .saree-card h3 {
-    font-size: 16px;
-  }
-
-  .price {
-    font-size: 14px;
-  }
-
-  .buy-btn {
-    font-size: 12px;
-    padding: 8px 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .saree-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 10px;
-  }
-
-  .saree-card h3 {
-    font-size: 14px;
-  }
-
-  .price {
-    font-size: 12px;
-  }
-
-  .buy-btn {
-    font-size: 10px;
-    padding: 6px 10px;
-  }
-}
-/* Popup Message Styles */
-.popup-message {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #28a745;
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  font-size: 14px;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s, visibility 0.3s;
-  z-index: 1000;
-}
-
-.popup-message.error {
-  background-color: #dc3545;
-}
-
-.popup-message.show {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Wishlist Page Link Styles */
-.view-wishlist {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  background-color: #007bff;
-  color: #fff;
-  padding: 8px 12px;
-  text-decoration: none;
-  border-radius: 5px;
-  font-size: 14px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-}
-
-.view-wishlist:hover {
-  background-color: #0056b3;
-}
   </style>
 </head>
 <body>
-<!-- Header Section -->
-<header>
+  <!-- Header Section -->
+  <header>
     <div class="website-name">Shalu Sarees & Jewellery</div>
-    
-    <!-- Navigation Links -->
     <nav>
       <a href="home.html">Home</a>
       <a href="jewellery.html">Jewellery</a>
@@ -261,53 +162,56 @@
     </nav>
   </header>
 
-  <u><h1 style="text-align: center; font-family: 'Georgia', serif; color: darkmagenta;">Your Wishlist</h1></u>
+  <!-- Wishlist Heading -->
+  <h1>Your Wishlist</h1>
+
+  <!-- Wishlist Items Container -->
   <div class="wishlist-container"></div>
 
-<script>
-  const wishlistContainer = document.querySelector('.wishlist-container');
+  <script>
+    const wishlistContainer = document.querySelector('.wishlist-container');
 
-  // Retrieve wishlist data from localStorage
-  function getWishlist() {
-    return JSON.parse(localStorage.getItem('wishlistPageData')) || [];
-  }
-
-  // Save updated wishlist data to localStorage
-  function saveWishlist(updatedWishlist) {
-    localStorage.setItem('wishlistPageData', JSON.stringify(updatedWishlist));
-  }
-
-  // Render wishlist items dynamically
-  function renderWishlist() {
-    wishlistContainer.innerHTML = ''; // Clear the container
-    const wishlistItems = getWishlist();
-
-    wishlistItems.forEach((item) => {
-      const itemDiv = document.createElement('div');
-      itemDiv.classList.add('wishlist-item');
-      itemDiv.innerHTML = `
-        <img src="${item.image}" alt="${item.id}">
-        <h3>${item.id}</h3>
-        <p>${item.price}</p>
-        <button class="remove-btn" data-id="${item.id}">Remove</button>
-      `;
-      wishlistContainer.appendChild(itemDiv);
-    });
-  }
-
-  // Event listener to handle item removal
-  wishlistContainer.addEventListener('click', function (e) {
-    if (e.target.classList.contains('remove-btn')) {
-      const productId = e.target.dataset.id;
-      const wishlistItems = getWishlist(); // Get current wishlist
-      const updatedWishlist = wishlistItems.filter((item) => item.id !== productId); // Remove the item
-      saveWishlist(updatedWishlist); // Update localStorage
-      renderWishlist(); // Re-render the wishlist
+    // Retrieve wishlist data from localStorage
+    function getWishlist() {
+      return JSON.parse(localStorage.getItem('wishlistPageData')) || [];
     }
-  });
 
-  // Initial render of wishlist
-  renderWishlist();
-</script>
+    // Save updated wishlist data to localStorage
+    function saveWishlist(updatedWishlist) {
+      localStorage.setItem('wishlistPageData', JSON.stringify(updatedWishlist));
+    }
+
+    // Render wishlist items dynamically
+    function renderWishlist() {
+      wishlistContainer.innerHTML = ''; // Clear the container
+      const wishlistItems = getWishlist();
+
+      wishlistItems.forEach((item) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('wishlist-item');
+        itemDiv.innerHTML = `
+          <img src="${item.image}" alt="${item.id}">
+          <h3>${item.id}</h3>
+          <p>${item.price}</p>
+          <button class="remove-btn" data-id="${item.id}">Remove</button>
+        `;
+        wishlistContainer.appendChild(itemDiv);
+      });
+    }
+
+    // Event listener to handle item removal
+    wishlistContainer.addEventListener('click', function (e) {
+      if (e.target.classList.contains('remove-btn')) {
+        const productId = e.target.dataset.id;
+        const wishlistItems = getWishlist(); // Get current wishlist
+        const updatedWishlist = wishlistItems.filter((item) => item.id !== productId); // Remove the item
+        saveWishlist(updatedWishlist); // Update localStorage
+        renderWishlist(); // Re-render the wishlist
+      }
+    });
+
+    // Initial render of wishlist
+    renderWishlist();
+  </script>
 </body>
 </html>
