@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding saree page</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+ /* Header Container */
+ header {
+      background-color: rgb(15, 0, 70);
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+    }
+
+    /* Website Name */
+    .website-name {
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      margin-bottom: 5px;
+    }
+
+    /* Navigation Menu */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      padding: 10px 20px;
+      transition: background-color 0.3s;
+    }
+
+    nav a:hover {
+      background-color: rgb(25, 25, 100);
+      border-radius: 5px;
+    }
+
+    /* Mobile responsive styles */
+    @media (max-width: 768px) {
+      nav {
+        gap: 20px;
+      }
+
+      nav a {
+        font-size: 16px;
+        padding: 8px 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 20px 0;
+      }
+
+      .website-name {
+        font-size: 24px;
+      }
+
+      nav a {
+        font-size: 14px;
+        padding: 6px 10px;
+      }
+    }
+    /* Grid layout for saree cards */
+.saree-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 10px;
+  justify-content: center;
+  justify-items: center;
+}
+
+/* Individual saree card styles */
+.saree-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  transition: transform 0.3s;
+  justify-content: center;
+  justify-items: center;
+}
+
+.saree-card:hover {
+  transform: translateY(-10px);
+}
+
+.saree-card img {
+  width: 100%;
+  height: auto;
+}
+
+.saree-card h3 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.price {
+  font-size: 16px;
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.original-price {
+  font-size: 14px;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 5px;
+}
+
+.buy-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.buy-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Wishlist icon styles */
+.wishlist-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  color: #d32f2f;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.wishlist-icon:hover {
+  background-color: #d32f2f;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .saree-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+
+  .saree-card h3 {
+    font-size: 16px;
+  }
+
+  .price {
+    font-size: 14px;
+  }
+
+  .buy-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .saree-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+
+  .saree-card h3 {
+    font-size: 14px;
+  }
+
+  .price {
+    font-size: 12px;
+  }
+
+  .buy-btn {
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+}
+/* Popup Message Styles */
+.popup-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #28a745;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 1000;
+}
+
+.popup-message.error {
+  background-color: #dc3545;
+}
+
+.popup-message.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Wishlist Page Link Styles */
+.view-wishlist {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 12px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+}
+
+.view-wishlist:hover {
+  background-color: #0056b3;
+}
+</style>
+<body>
+    <header>
+        <div class="website-name">Shalu Sarees & Jewellery</div>
+        
+        <!-- Navigation Links -->
+        <nav>
+          <a href="home.html">Home</a>
+          
+        </nav>
+      </header>
+  <U><h1 style="font-family: 'Georgia', serif; text-align: center; color: grey;"> WEDDING SAREES</h1></U>
+      <div class="saree-grid">
+        <!-- Saree Card 1 -->
+        <div class="saree-card">
+          <div class="wishlist-icon">♡</div>
+          <img src="https://www.riccoindia.com/cdn/shop/files/5A120F61-FA35-4E86-805A-9B2DCAC73BF0_580x.jpg?v=1699169697" alt="Saree 1">
+          <h3>Wedding Saree</h3>
+          <p class="price">₹12,499</p>
+          <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
+        </div>
+      
+        <!-- Saree Card 2 -->
+        <div class="saree-card">
+          <div class="wishlist-icon">♡</div>
+          <img src="https://i.pinimg.com/736x/4c/3d/da/4c3ddaa0a943044ef425f752d7315d38.jpg" alt="Saree 2">
+          <h3> wedding Saree</h3>
+          <p class="price">₹13,199 </p>
+          <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
+        </div>
+      
+        
+      
+        <!-- Saree Card 3 -->
+        <div class="saree-card">
+          <div class="wishlist-icon">♡</div>
+          <img src="https://newsmeter.in/h-upload/2021/12/22/311407-sabyasachi-wedding-designer-saree.webp" alt="Saree 4">
+          <h3>Wedding Saree</h3>
+          <p class="price">₹20,050</p>
+          <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
+        </div>
+        <!-- Saree Card 4 -->
+        <div class="saree-card">
+          <div class="wishlist-icon">♡</div>
+          <img src="https://console.spiderai.in/img/PARVATI%20FABRICS%20LTD/products/product886692-252932/BRIDAL%20SAREE.jpg" alt="Saree 4">
+          <h3>Wedding Saree</h3>
+          <p class="price">₹16,999</p>
+          <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
+        </div>
+        
+        </div>
+<!-- Footer -->
+<footer style="background-color: #3e2723; color: #ffffff; padding: 40px 20px; font-family: 'Arial', sans-serif;">
+    <div class="container" style="max-width: 1200px; margin: auto;">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between;">
+        
+        <!-- Brand and About Section -->
+        <div style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+          <h3 style="font-size: 24px; font-weight: bold;">Shalu Sarees & Jewellery</h3>
+          <p style="font-size: 14px; line-height: 1.8;"><i>
+            Discover the finest collection of sarees and jewellery every occasion. Tradition meets elegance in every weave. Experience luxury like never before.
+          </i></p>
+        </div>
+        
+        <!-- Quick Links -->
+        <div style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+          <h4 style="font-size: 18px; font-weight: bold;">Quick Links</h4>
+          <ul style="list-style: none; padding: 0; line-height: 2;">
+            <li><a href="index.html" style="text-decoration: none; color: #ffccbc;">Home</a></li>
+            <li><a href="collection.html" style="text-decoration: none; color: #ffccbc;">Collections</a></li>
+            <li><a href="#about" style="text-decoration: none; color: #ffccbc;">about.html</a></li>
+            <li><a href="contact.html" style="text-decoration: none; color: #ffccbc;">Contact us</a></li>
+            <li><a href="faqs.html" style="text-decoration: none; color: #ffccbc;">FAQs</a></li>
+          </ul>
+        </div>
+        
+        <!-- Social Media Links -->
+        <div style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+          <h4 style="font-size: 18px; font-weight: bold;">Follow Us</h4>
+          <div style="margin-top: 10px;">
+            <a href="https://facebook.com" target="_blank" style="margin-right: 15px;">
+              <img src="https://img.icons8.com/color/48/000000/facebook.png" alt="Facebook">
+            </a>
+            <a href="https://instagram.com" target="_blank" style="margin-right: 15px;">
+              <img src="https://img.icons8.com/color/48/000000/instagram-new.png" alt="Instagram">
+            </a>
+            <a href="https://twitter.com" target="_blank" style="margin-right: 15px;">
+              <img src="https://img.icons8.com/color/48/000000/twitter.png" alt="Twitter">
+            </a>
+            <a href="https://youtube.com" target="_blank">
+              <img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube">
+            </a>
+          </div>
+        </div>
+  
+  
+      <!-- Bottom Footer -->
+      <div style="text-align: center; margin-top: 20px; font-size: 14px;">
+        <p>&copy; 2024 Shalu Sarees | All Rights Reserved.</p>
+        <p style="margin-top: 5px;">Designed with ❤️ by Shalu Sarees & Jewellery Team</p>
+      </div>
+    </div>
+  </footer>
+</body>
+<script>
+    // Function to handle wishlist actions
+
+document.addEventListener('DOMContentLoaded', function () {
+  const wishlistIcons = document.querySelectorAll('.wishlist-icon');
+  const popupMessage = document.createElement('div');
+  popupMessage.classList.add('popup-message');
+  document.body.appendChild(popupMessage);
+
+  // Initialize wishlist from localStorage
+  const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+  // Toggle wishlist and display popup message
+  wishlistIcons.forEach((icon, index) => {
+    // Mark already added items
+    if (wishlist.includes(index)) {
+      icon.classList.add('added');
+    }
+
+    icon.addEventListener('click', function () {
+      const productIndex = index; // Unique identifier (e.g., card index)
+      const isAdded = icon.classList.toggle('added');
+      const product = getProductDetails(icon);
+
+      if (isAdded) {
+        wishlist.push(productIndex);
+        showPopupMessage('Product added to wishlist!', 'success');
+        addToWishlist(product);
+      } else {
+        const idx = wishlist.indexOf(productIndex);
+        if (idx > -1) wishlist.splice(idx, 1);
+        showPopupMessage('Product removed from wishlist!', 'error');
+        removeFromWishlist(product.id);
+      }
+
+      // Update localStorage
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    });
+  });
+
+  function showPopupMessage(message, type) {
+    popupMessage.textContent = message;
+    popupMessage.className = `popup-message show ${type === 'error' ? 'error' : ''}`;
+    setTimeout(() => {
+      popupMessage.classList.remove('show');
+    }, 3000);
+  }
+
+  function getProductDetails(icon) {
+    const card = icon.closest('.saree-card');
+    return {
+      id: card.querySelector('h3').textContent,
+      image: card.querySelector('img').src,
+      price: card.querySelector('.price').textContent,
+    };
+  }
+
+  function addToWishlist(product) {
+    const wishlistPageData = JSON.parse(localStorage.getItem('wishlistPageData')) || [];
+    wishlistPageData.push(product);
+    localStorage.setItem('wishlistPageData', JSON.stringify(wishlistPageData));
+  }
+
+  function removeFromWishlist(productId) {
+    let wishlistPageData = JSON.parse(localStorage.getItem('wishlistPageData')) || [];
+    wishlistPageData = wishlistPageData.filter((item) => item.id !== productId);
+    localStorage.setItem('wishlistPageData', JSON.stringify(wishlistPageData));
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const buyButtons = document.querySelectorAll('.buy-btn');
+
+  buyButtons.forEach((button, index) => {
+    button.addEventListener('click', function () {
+      const productCard = button.closest('.saree-card');
+      const productDetails = {
+        id: productCard.querySelector('h3').textContent,
+        image: productCard.querySelector('img').src,
+        price: productCard.querySelector('.price').textContent,
+      };
+
+      // Save product details to localStorage
+      localStorage.setItem('selectedProduct', JSON.stringify(productDetails));
+
+      // Redirect to payment page
+      window.location.href = 'payment.html';
+    });
+  });
+});
+
+</script>
+</html>
