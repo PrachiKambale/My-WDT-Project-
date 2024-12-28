@@ -209,6 +209,39 @@
         document.getElementById('product-price').textContent = product.price;
       }
     });
+    
+  document.addEventListener('DOMContentLoaded', function () {
+    const paymentForm = document.getElementById('payment-form');
+    const proceedButton = paymentForm.querySelector('.submit');
+
+    // Disable button initially
+    proceedButton.disabled = true;
+    proceedButton.style.opacity = 0.6;
+
+    // Function to validate form
+    function validateForm() {
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phoneNumber = document.getElementById('phone_number').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const quantity = document.getElementById('quantity').value;
+      const paymentMethod = document.getElementById('payment-method').value;
+
+      // Enable the button only if all fields are filled
+      if (name && email && phoneNumber && address && quantity && paymentMethod) {
+        proceedButton.disabled = false;
+        proceedButton.style.opacity = 1;
+      } else {
+        proceedButton.disabled = true;
+        proceedButton.style.opacity = 0.6;
+      }
+    }
+
+    // Attach 'input' and 'change' event listeners to form fields
+    paymentForm.addEventListener('input', validateForm);
+    paymentForm.addEventListener('change', validateForm);
+  });
+ 
   </script>
 </body>
 </html>
