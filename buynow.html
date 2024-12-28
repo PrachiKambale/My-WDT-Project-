@@ -210,37 +210,153 @@
       }
     });
     
+ 
   document.addEventListener('DOMContentLoaded', function () {
-    const paymentForm = document.getElementById('payment-form');
-    const proceedButton = paymentForm.querySelector('.submit');
+    const product = JSON.parse(localStorage.getItem('selectedProduct'));
 
-    // Disable button initially
-    proceedButton.disabled = true;
-    proceedButton.style.opacity = 0.6;
-
-    // Function to validate form
-    function validateForm() {
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const phoneNumber = document.getElementById('phone_number').value.trim();
-      const address = document.getElementById('address').value.trim();
-      const quantity = document.getElementById('quantity').value;
-      const paymentMethod = document.getElementById('payment-method').value;
-
-      // Enable the button only if all fields are filled
-      if (name && email && phoneNumber && address && quantity && paymentMethod) {
-        proceedButton.disabled = false;
-        proceedButton.style.opacity = 1;
-      } else {
-        proceedButton.disabled = true;
-        proceedButton.style.opacity = 0.6;
-      }
+    if (product) {
+      document.getElementById('product-image').src = product.image;
+      document.getElementById('product-name').textContent = product.id;
+      document.getElementById('product-price').textContent = product.price;
     }
 
-    // Attach 'input' and 'change' event listeners to form fields
-    paymentForm.addEventListener('input', validateForm);
-    paymentForm.addEventListener('change', validateForm);
+    const form = document.getElementById('payment-form');
+    const inputs = form.querySelectorAll('input, select');
+    const submitButton = form.querySelector('.submit');
+
+    // Disable the button initially
+    toggleSubmitButton();
+
+    // Add event listeners for validation
+    inputs.forEach((input) => {
+      input.addEventListener('blur', function () {
+        validateField(this); // Validate when the user leaves the field
+        toggleSubmitButton(); // Update button state
+      });
+
+      input.addEventListener('input', function () {
+        clearError(this); // Clear errors while typing
+        toggleSubmitButton(); // Update button state
+      });
+    });
+
+    // Validate individual fields
+    function validateField(field) {
+      let isValid = true;
+      const errorSpan = field.nextElementSibling;
+
+      // Create error span if not already present
+      if (!errorSpan || !errorSpan.classList.contains('error-message')) {
+        const span = document.createElement('span');
+        span.className = 'error-message';
+        span.style.color = '#d32f2f';
+        span.style.fontSize = '12px';
+        field.parentNode.insertBefore(span, field.nextSibling);
+      }
+
+      // Validate required fields
+      if (field.hasAttribute('required') && field.value.trim() === '') {
+        isValid = false;
+        showError(field, 'This field is required.');
+      }
+
+      // Validate full name (no digits)
+      if (field.id === 'name' && field.value.trim() !== '') {
+        const nameRegex = /^[A-Za-z\s]+$/;
+        if (!nameRegex.test(field.value)) {
+          isValid = false;
+          showError(field, 'Full name must not contain digits or special characters.');
+        }
+      }
+
+      // Validate address (not only digits)
+      if (field.id === 'address' && field.value.trim() !== '') {
+        const addressRegex = /[a-zA-Z]+/;
+        if (!addressRegex.test(field.value)) {
+          isValid = false;
+          showError(field, 'Address must include letters and not just digits.');
+        }
+      }
+
+      // Validate email
+      if (field.id === 'email' && field.value.trim() !== '') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(field.value)) {
+          isValid = false;
+          showError(field, 'Please enter a valid email address.');
+        }
+      }
+
+      // Validate phone number (10 digits)
+      if (field.id === 'phone_number' && field.value.trim() !== '') {
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(field.value)) {
+          isValid = false;
+          showError(field, 'Please enter a valid 10-digit phone number.');
+        }
+      }
+
+      // Check if valid, otherwise clear error
+      if (isValid) {
+        clearError(field);
+      }
+
+      return isValid;
+    }
+
+    // Show error message
+    function showError(field, message) {
+      const errorSpan = field.nextElementSibling;
+      if (errorSpan && errorSpan.classList.contains('error-message')) {
+        errorSpan.textContent = message;
+      }
+      field.style.borderColor = '#d32f2f';
+    }
+
+    // Clear error message
+    function clearError(field) {
+      const errorSpan = field.nextElementSibling;
+      if (errorSpan && errorSpan.classList.contains('error-message')) {
+        errorSpan.textContent = '';
+      }
+      field.style.borderColor = '#ddd';
+    }
+
+    // Enable or disable the submit button
+    function toggleSubmitButton() {
+      let isFormValid = true;
+
+      inputs.forEach((input) => {
+        if (
+          (input.hasAttribute('required') && input.value.trim() === '') || // Check empty required fields
+          !validateField(input) // Check if field has invalid value
+        ) {
+          isFormValid = false;
+        }
+      });
+
+      submitButton.disabled = !isFormValid;
+      submitButton.style.backgroundColor = isFormValid ? 'rgb(15, 0, 70)' : '#ccc';
+      submitButton.style.cursor = isFormValid ? 'pointer' : 'not-allowed';
+    }
+
+    // Prevent submission if any field is invalid
+    form.addEventListener('submit', function (event) {
+      let isValid = true;
+
+      inputs.forEach((input) => {
+        if (!validateField(input)) {
+          isValid = false;
+        }
+      });
+
+      if (!isValid) {
+        event.preventDefault(); // Prevent form submission
+        alert('Please fix the errors before proceeding.');
+      }
+    });
   });
+
  
   </script>
 </body>
