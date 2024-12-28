@@ -488,13 +488,14 @@ a {
   </div>
 
   <nav class="nav-bar">
-    <a href="newarrival.html">New Arrivals</a>
+    <a href="shopnow.html">New Arrivals</a>
     <a href="saree.html">Sarees</a>
     <a href="weddingsaree.html">Wedding Sarees</a>
     <a href="jewellery.html">Jewellery</a>
-    <a href="weddingjewellery.html">Bridal Jewellery</a>
-    <a href="trending.html">Trending</a>
-    <a href="bestseller.html">Best Sellers</a>
+    <a href="bridal.html">Bridal Jewellery</a>
+    <a href="shopnow.html">Trending</a>
+    <a href="#">Best Sellers</a>
+    <a href="about.html">About Us</a>
     
   </nav>
 
@@ -669,4 +670,122 @@ a {
               <img src="https://img.icons8.com/color/48/000000/facebook.png" alt="Facebook">
             </a>
             <a href="https://instagram.com" target="_blank" style="margin-right: 15px;">
-              <img src="https://
+              <img src="https://img.icons8.com/color/48/000000/instagram-new.png" alt="Instagram">
+            </a>
+            <a href="https://twitter.com" target="_blank" style="margin-right: 15px;">
+              <img src="https://img.icons8.com/color/48/000000/twitter.png" alt="Twitter">
+            </a>
+            <a href="https://youtube.com" target="_blank">
+              <img src="https://img.icons8.com/color/48/000000/youtube-play.png" alt="YouTube">
+            </a>
+          </div>
+        </div>
+  
+  
+      <!-- Bottom Footer -->
+      <div style="text-align: center; margin-top: 20px; font-size: 14px;">
+        <p>&copy; 2024 Shalu Sarees | All Rights Reserved.</p>
+        <p style="margin-top: 5px;">Designed with ❤️ by Shalu Sarees & Jewellery Team</p>
+      </div>
+    </div>
+  </footer>
+  <script>
+    function toggleNav() {
+      const navBar = document.querySelector('.nav-bar');
+      navBar.classList.toggle('active');
+    }
+
+// Function to handle wishlist actions
+
+document.addEventListener('DOMContentLoaded', function () {
+  const wishlistIcons = document.querySelectorAll('.wishlist-icon');
+  const popupMessage = document.createElement('div');
+  popupMessage.classList.add('popup-message');
+  document.body.appendChild(popupMessage);
+
+  // Initialize wishlist from localStorage
+  const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+
+  // Toggle wishlist and display popup message
+  wishlistIcons.forEach((icon, index) => {
+    // Mark already added items
+    if (wishlist.includes(index)) {
+      icon.classList.add('added');
+    }
+
+    icon.addEventListener('click', function () {
+      const productIndex = index; // Unique identifier (e.g., card index)
+      const isAdded = icon.classList.toggle('added');
+      const product = getProductDetails(icon);
+
+      if (isAdded) {
+        wishlist.push(productIndex);
+        showPopupMessage('Product added to wishlist!', 'success');
+        addToWishlist(product);
+      } else {
+        const idx = wishlist.indexOf(productIndex);
+        if (idx > -1) wishlist.splice(idx, 1);
+        showPopupMessage('Product removed from wishlist!', 'error');
+        removeFromWishlist(product.id);
+      }
+
+      // Update localStorage
+      localStorage.setItem('wishlist', JSON.stringify(wishlist));
+    });
+  });
+
+  function showPopupMessage(message, type) {
+    popupMessage.textContent = message;
+    popupMessage.className = `popup-message show ${type === 'error' ? 'error' : ''}`;
+    setTimeout(() => {
+      popupMessage.classList.remove('show');
+    }, 3000);
+  }
+
+  function getProductDetails(icon) {
+    const card = icon.closest('.saree-card');
+    return {
+      id: card.querySelector('h3').textContent,
+      image: card.querySelector('img').src,
+      price: card.querySelector('.price').textContent,
+    };
+  }
+
+  function addToWishlist(product) {
+    const wishlistPageData = JSON.parse(localStorage.getItem('wishlistPageData')) || [];
+    wishlistPageData.push(product);
+    localStorage.setItem('wishlistPageData', JSON.stringify(wishlistPageData));
+  }
+
+  function removeFromWishlist(productId) {
+    let wishlistPageData = JSON.parse(localStorage.getItem('wishlistPageData')) || [];
+    wishlistPageData = wishlistPageData.filter((item) => item.id !== productId);
+    localStorage.setItem('wishlistPageData', JSON.stringify(wishlistPageData));
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const buyButtons = document.querySelectorAll('.buy-btn');
+
+  buyButtons.forEach((button, index) => {
+    button.addEventListener('click', function () {
+      const productCard = button.closest('.saree-card');
+      const productDetails = {
+        id: productCard.querySelector('h3').textContent,
+        image: productCard.querySelector('img').src,
+        price: productCard.querySelector('.price').textContent,
+      };
+
+      // Save product details to localStorage
+      localStorage.setItem('selectedProduct', JSON.stringify(productDetails));
+
+      // Redirect to payment page
+      window.location.href = 'payment.html';
+    });
+  });
+});
+
+  </script>
+  </body>
+</html>
