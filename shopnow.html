@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop now</title>
+  <title> NewShop now</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -246,6 +246,151 @@
 .view-wishlist:hover {
   background-color: #0056b3;
 }
+   .add-to-cart-btn {
+      background-color: #ff9800;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      margin: 10px;
+      transition: background-color 0.3s;
+    }
+
+    .add-to-cart-btn:hover {
+      background-color: #e68900;
+    }
+
+    /* Cart Modal */
+    .cart-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .cart-modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .cart-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .cart-modal-header h2 {
+      font-size: 18px;
+    }
+
+    .cart-close-btn {
+      background-color: #d32f2f;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .cart-items {
+      list-style: none;
+      padding: 0;
+    }
+
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .cart-item h3 {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .cart-item p {
+      font-size: 14px;
+      color: #d32f2f;
+      margin: 0;
+    }
+
+    .remove-btn {
+      background-color: #d32f2f;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .remove-btn:hover {
+      background-color: #a02828;
+    }
+
+    .checkout-btn {
+      display: block;
+      width: 100%;
+      background-color: #007bff;
+      color: #fff;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .checkout-btn:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+      .cart-modal-content {
+        padding: 15px;
+      }
+
+      .cart-modal-header h2 {
+        font-size: 16px;
+      }
+
+      .cart-item h3 {
+        font-size: 12px;
+      }
+
+      .checkout-btn {
+        font-size: 14px;
+        padding: 8px;
+      }
+    }
 </style>
 <body>
     <header>
@@ -265,6 +410,7 @@
           <img src="https://images.meesho.com/images/products/416152003/hx70h_512.webp" alt="Saree 1">
           <h3>Traditional Silk Saree</h3>
           <p class="price">₹1,499</p>
+<button class="add-to-cart-btn">Add to Cart</button></a>
           <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
         </div>
       
@@ -274,6 +420,7 @@
           <img src="https://kaalgi.com/cdn/shop/files/photo_2024-05-30_12-37-04_4e09e32a-05b9-4eaa-9dd9-e9fdc9eb3d77.jpg?v=1719132377" alt="Saree 2">
           <h3>Designer Saree</h3>
           <p class="price">₹2,199 </p>
+<button class="add-to-cart-btn">Add to Cart</button></a>
           <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
         </div>
       
@@ -285,7 +432,8 @@
           <img src="https://www.silberry.in/cdn/shop/files/S126__3.jpg?v=1719387901&width=533" alt="Saree 4">
           <h3>Pendant Sets</h3>
           <p class="price">₹12,000</p>
-          <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
+<button class="add-to-cart-btn">Add to Cart</button><
+<a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
         </div>
         <!-- Saree Card 4 -->
         <div class="saree-card">
@@ -293,6 +441,7 @@
           <img src="https://priyaasi.com/cdn/shop/products/EAR-PR-50785.CR.jpg?v=1637819109&width=1080" alt="Saree 4">
           <h3>Earrings</h3>
           <p class="price">₹999</p>
+<button class="add-to-cart-btn">Add to Cart</button>
           <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
         </div>
 <!-- Saree Card 4 -->
@@ -301,6 +450,7 @@
   <img src="https://www.viraasi.com/cdn/shop/files/VIR1357_3.jpg?v=1699944999" alt="Saree 4">
   <h3>Earrings</h3>
   <p class="price">₹999</p>
+<button class="add-to-cart-btn">Add to Cart</button>
   <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
 </div>
 <div class="saree-card">
@@ -308,6 +458,7 @@
   <img src="https://assets0.mirraw.com/images/12174184/PLJWDCBGMK23001_2_zoom.jpg?1704808497" alt="Saree 1">
   <h3>Bangles</h3>
   <p class="price">₹799</p>
+<button class="add-to-cart-btn">Add to Cart</button>
   <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
 </div>
  <!-- Saree Card 2 -->
@@ -346,6 +497,19 @@
   <a href="buynow.html"><button class="buy-btn">Buy Now</button></a>
 </div>
         </div>
+        
+        <!-- Cart Modal -->
+  <div class="cart-modal">
+    <div class="cart-modal-content">
+      <div class="cart-modal-header">
+        <h2>Your Cart</h2>
+        <button class="cart-close-btn">✖</button>
+      </div>
+      <ul class="cart-items"></ul>
+                <a href="checkout"><button class="checkout-btn">Checkout</button></a>
+    </div>
+  </div>
+  
 <!-- Footer -->
 <footer style="background-color: #3e2723; color: #ffffff; padding: 40px 20px; font-family: 'Arial', sans-serif;">
     <div class="container" style="max-width: 1200px; margin: auto;">
@@ -490,5 +654,56 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 });
+
+const cartModal = document.querySelector('.cart-modal');
+    const cartCloseBtn = document.querySelector('.cart-close-btn');
+    const addToCartBtns = document.querySelectorAll('.add-to-cart-btn');
+    const cartItemsContainer = document.querySelector('.cart-items');
+    const cartData = [];
+
+    addToCartBtns.forEach((btn, index) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.saree-card');
+        const item = {
+          id: index,
+          name: card.querySelector('h3').textContent,
+          price: card.querySelector('.price').textContent,
+          image: card.querySelector('img').src
+        };
+        cartData.push(item);
+        updateCart();
+        cartModal.style.display = 'flex';
+      });
+    });
+
+    cartCloseBtn.addEventListener('click', () => {
+      cartModal.style.display = 'none';
+    });
+
+    function updateCart() {
+      cartItemsContainer.innerHTML = '';
+      cartData.forEach((item, index) => {
+        const cartItem = document.createElement('li');
+        cartItem.className = 'cart-item';
+        cartItem.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div>
+            <h3>${item.name}</h3>
+            <p>${item.price}</p>
+          </div>
+          <button class="remove-btn" data-index="${index}">Remove</button>
+        `;
+        cartItemsContainer.appendChild(cartItem);
+      });
+
+      document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const index = e.target.dataset.index;
+          cartData.splice(index, 1);
+          updateCart();
+     
+        });
+      });
+    }
 </script>
-  </html>
+</html>
